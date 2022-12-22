@@ -1,0 +1,5 @@
+FROM php:fpm-alpine
+
+RUN apk add --no-cache $PHPIZE_DEPS zlib-dev libmemcached-dev
+RUN pecl install memcached
+RUN docker-php-ext-enable memcached

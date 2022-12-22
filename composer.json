@@ -1,0 +1,15 @@
+{
+    "name": "msrumon/maikuolan-common-cache",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rumon",
+            "email": "contact@msrumon.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "maikuolan/common": "^2.9"
+    }
+}

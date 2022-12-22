@@ -1,0 +1,31 @@
+services:
+  app:
+    depends_on:
+      - php
+    image: nginx:stable-alpine
+    working_dir: /var/www/html
+    volumes:
+      - ./app.nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - .:/var/www/html:ro
+    ports:
+      - 8080:80
+  php:
+    depends_on:
+      - memcached
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/var/www/html:rw
+    environment:
+      MEMCACHED_HOST: memcached
+      MEMCACHED_PORT: 11211
+  memcached:
+    image: memcached:alpine
+  composer:
+    image: composer:latest
+    working_dir: /app
+    volumes:
+      - .:/app:rw
+    entrypoint:
+      - composer
